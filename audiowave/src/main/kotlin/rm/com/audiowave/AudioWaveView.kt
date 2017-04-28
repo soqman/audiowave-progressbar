@@ -29,7 +29,7 @@ class AudioWaveView : View {
 
   var onProgressListener: OnProgressListener? = null
 
-  var onProgressChanged: (Float, Boolean) -> Unit = { progress, byUser -> Unit }
+  var onProgressChanged: (Float, Boolean, View) -> Unit = { progress, byUser, view -> Unit }
 
   var onStartTracking: (Float) -> Unit = {}
 
@@ -79,8 +79,8 @@ class AudioWaveView : View {
 
       field = Math.abs(value)
 
-      onProgressListener?.onProgressChanged(field, isTouched)
-      onProgressChanged(field, isTouched)
+      onProgressListener?.onProgressChanged(field, isTouched, this)
+      onProgressChanged(field, isTouched, this)
 
       postInvalidate()
     }

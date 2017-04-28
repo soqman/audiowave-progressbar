@@ -1,5 +1,7 @@
 package rm.com.audiowave
 
+import android.view.View
+
 /**
  * Created by alex
  */
@@ -11,5 +13,5 @@ interface OnSamplingListener {
 interface OnProgressListener {
   fun onStartTracking(progress: Float)
   fun onStopTracking(progress: Float)
-  fun onProgressChanged(progress: Float, byUser: Boolean)
+  fun onProgressChanged(progress: Float, byUser: Boolean, view: View)
 }

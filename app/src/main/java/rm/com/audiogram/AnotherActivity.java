@@ -2,10 +2,12 @@ package rm.com.audiogram;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import rm.com.audiowave.AudioWaveView;
-import rm.com.audiowave.OnSamplingListener;
 import rm.com.audiowave.OnProgressListener;
+import rm.com.audiowave.OnSamplingListener;
 
 public final class AnotherActivity extends Activity {
 
@@ -38,7 +40,7 @@ public final class AnotherActivity extends Activity {
       }
 
       @Override
-      public void onProgressChanged(float progress, boolean byUser) {
+      public void onProgressChanged(float progress, boolean byUser, View v) {
 
       }
     });
