@@ -34,8 +34,8 @@ public final class RecordHolder extends RecyclerView.ViewHolder {
     wave.setRawData(item.raw);
     wave.setOnProgressListener(new OnProgressListener() {
       @Override
-      public void onStartTracking(float progress) {
-
+      public void onStartTracking(float progress,@NotNull View view) {
+        Log.d("VIEW CHECK", String.valueOf(view.getId()));
       }
 
       @Override
@@ -44,8 +44,8 @@ public final class RecordHolder extends RecyclerView.ViewHolder {
       }
 
       @Override
-      public void onProgressChanged(float progress, boolean byUser, @NotNull View view) {
-        Log.d("VIEW CHECK", String.valueOf(view.getId()));
+      public void onProgressChanged(float progress, boolean byUser) {
+
       }
     });
   }

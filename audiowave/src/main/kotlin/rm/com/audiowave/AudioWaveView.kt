@@ -29,9 +29,9 @@ class AudioWaveView : View {
 
   var onProgressListener: OnProgressListener? = null
 
-  var onProgressChanged: (Float, Boolean, View) -> Unit = { progress, byUser, view -> Unit }
+  var onProgressChanged: (Float, Boolean) -> Unit = { progress, byUser -> Unit }
 
-  var onStartTracking: (Float) -> Unit = {}
+  var onStartTracking: (Float, View) -> Unit = { progress, view ->Unit }
 
   var onStopTracking: (Float) -> Unit = {}
 
@@ -79,8 +79,8 @@ class AudioWaveView : View {
 
       field = Math.abs(value)
 
-      onProgressListener?.onProgressChanged(field, isTouched, this)
-      onProgressChanged(field, isTouched, this)
+      onProgressListener?.onProgressChanged(field, isTouched)
+      onProgressChanged(field, isTouched)
 
       postInvalidate()
     }
@@ -179,8 +179,8 @@ class AudioWaveView : View {
         progress = event.toProgress()
 
         // these paired calls look ugly, but we need them for Java
-        onProgressListener?.onStartTracking(progress)
-        onStartTracking(progress)
+        onProgressListener?.onStartTracking(progress,this)
+        onStartTracking(progress,this)
 
         return true
       }

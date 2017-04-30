@@ -11,7 +11,7 @@ interface OnSamplingListener {
 }
 
 interface OnProgressListener {
-  fun onStartTracking(progress: Float)
+  fun onStartTracking(progress: Float, view: View)
   fun onStopTracking(progress: Float)
-  fun onProgressChanged(progress: Float, byUser: Boolean, view: View)
+  fun onProgressChanged(progress: Float, byUser: Boolean)
 }
