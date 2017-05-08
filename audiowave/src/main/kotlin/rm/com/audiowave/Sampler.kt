@@ -26,7 +26,7 @@ object Sampler {
   fun downSample(data: ByteArray, targetSize: Int): ByteArray {
     val targetSized = ByteArray(targetSize)
     val chunkSize = data.size / targetSize
-    val chunkStep = Math.max(Math.floor((chunkSize / 10.0)), 1.0).toInt()
+    val chunkStep = Math.max(Math.floor((chunkSize / 10.0)), 1.0).toLong()
 
     var prevDataIndex = 0
     var sampledPerChunk = 0F
@@ -36,15 +36,13 @@ object Sampler {
       return targetSized.paste(data)
     }
 
-    for (index in 0..data.size step chunkStep) {
-      val currentDataIndex = targetSize * index / data.size
-
+    for (index:Long in 0..data.size.toLong() step chunkStep) {
+      val currentDataIndex: Int = (targetSize * index / data.size).toInt()
       if (prevDataIndex == currentDataIndex) {
         sampledPerChunk += 1
-        sumPerChunk += data[index].abs
+        sumPerChunk += data[index.toInt()].abs
       } else {
         targetSized[prevDataIndex] = (sumPerChunk / sampledPerChunk).toByte()
-
         sumPerChunk = 0F
         sampledPerChunk = 0F
         prevDataIndex = currentDataIndex
