@@ -176,12 +176,10 @@ class AudioWaveView : View {
     when (event.action) {
       MotionEvent.ACTION_DOWN -> {
         isTouched = true
-        progress = event.toProgress()
-
         // these paired calls look ugly, but we need them for Java
         onProgressListener?.onStartTracking(progress,this)
         onStartTracking(progress,this)
-
+        progress = event.toProgress()
         return true
       }
       MotionEvent.ACTION_MOVE -> {
