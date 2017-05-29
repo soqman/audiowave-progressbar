@@ -172,7 +172,9 @@ class AudioWaveView : View {
 
   override fun onTouchEvent(event: MotionEvent?): Boolean {
     event ?: return super.onTouchEvent(event)
-
+    if(!this.isActivated){
+      return super.onTouchEvent(event)
+    }
     when (event.action) {
       MotionEvent.ACTION_DOWN -> {
         isTouched = true
